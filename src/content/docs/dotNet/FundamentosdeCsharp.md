@@ -20,6 +20,7 @@ Ejemplos:
 int a = 5;
 int b = a;
 b = 10;
+```
 
 // a sigue siendo 5
 Reference Types
@@ -33,6 +34,7 @@ class
 string
 object
 array
+```csharp
 class Persona { public string Nombre; }
 
 Persona p1 = new Persona();
@@ -42,6 +44,7 @@ Persona p2 = p1;
 p2.Nombre = "Luis";
 
 // p1.Nombre también será "Luis"
+```
 ¿Qué diferencia hay entre struct y class?
 Característica	struct	class
 Tipo	Value type	Reference type
@@ -50,18 +53,19 @@ Herencia	No puede heredar de otra struct o clase	Sí puede heredar
 Uso típico	Datos pequeños	Objetos complejos
 
 Ejemplo:
-
+```csharp
 struct Punto
 {
     public int X;
     public int Y;
 }
-
+```
+```csharp
 class Persona
 {
     public string Nombre;
 }
-
+```
 Se recomienda struct cuando:
 
 El objeto es pequeño
@@ -74,15 +78,18 @@ Es la conversión entre value types y reference types.
 Boxing
 
 Convierte un value type → object
-
+```csharp
 int numero = 10;
 object obj = numero; // boxing
+```
 Unboxing
 
-Convierte un object → value type
 
+Convierte un object → value type
+```csharp
 object obj = 10;
 int numero = (int)obj; // unboxing
+```
 
 El boxing genera una copia en el heap, lo que puede afectar al rendimiento.
 
@@ -94,43 +101,49 @@ var numero = 10; // int
 dynamic
 El tipo se resuelve en tiempo de ejecución
 No hay verificación de tipos en compilación
+```csharp
 dynamic dato = 10;
 dato = "hola";
+```
 object
 Es la clase base de todos los tipos en .NET
 Requiere casting
+```
 object dato = 10;
 int numero = (int)dato;
+```
 ¿Qué es un nullable type y cómo se usa?
 
 Permite que un value type pueda ser null.
 
 Sintaxis:
-
+```csharp
 int? edad = null;
-
+```
 Equivalente a:
-
+```csharp
 Nullable<int> edad = null;
-
+```
 Uso:
-
+```csharp
 int? numero = null;
 
 if(numero.HasValue)
 {
     Console.WriteLine(numero.Value);
 }
+```
 ¿Qué hace el operador ??
 
 Es el operador de coalescencia nula.
 
 Devuelve el valor de la izquierda si no es null, si lo es devuelve el de la derecha.
-
+```csharp
 string nombre = null;
 string resultado = nombre ?? "Invitado";
 
 Console.WriteLine(resultado); // Invitado
+```
 ¿Qué diferencia hay entre == y .Equals()?
 ==
 Compara valores o referencias
@@ -140,13 +153,13 @@ Método de la clase object
 Compara contenido del objeto
 
 Ejemplo:
-
+```csharp
 string a = "hola";
 string b = "hola";
 
 Console.WriteLine(a == b);        // true
 Console.WriteLine(a.Equals(b));   // true
-
+```
 Con objetos personalizados puede cambiar.
 
 ¿Qué es readonly?
@@ -157,6 +170,7 @@ Se puede asignar:
 
 En la declaración
 En el constructor
+```csharp
 class Persona
 {
     public readonly int Edad;
@@ -166,6 +180,7 @@ class Persona
         Edad = edad;
     }
 }
+```
 ¿Qué es const y en qué se diferencia de readonly?
 Característica	const	readonly
 Valor	Constante	Solo lectura
@@ -174,31 +189,35 @@ Modificable en constructor	No	Sí
 Tipo	Primitivos	Cualquier tipo
 
 Ejemplo:
-
+```csharp
 const double PI = 3.1416;
 
 readonly int edad;
+```
 ¿Qué hace using en C#?
 
 Tiene tres usos principales.
 
 1. Importar namespaces
+```csharp
 using System;
-
+```
 Permite usar clases sin escribir el namespace completo.
 
 2. Liberar recursos automáticamente
 
 Usado con objetos que implementan IDisposable.
-
+```csharp
 using (var archivo = new StreamReader("file.txt"))
 {
     string contenido = archivo.ReadToEnd();
 }
-
+```
 Esto llama automáticamente a Dispose().
 
 3. Alias de tipos
+```csharp
 using Texto = System.String;
 
 Texto mensaje = "Hola";
+```
