@@ -1,3 +1,7 @@
+---
+title: Buenas Prácticas en .NET
+---
+
 # Buenas Prácticas en .NET
 
 ## 1. Seguir las convenciones de nomenclatura
